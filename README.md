@@ -138,10 +138,9 @@ $ cd /etc/ansible
 
 Run the playbooks with the following commands:
 
-$ ansible-playbook myplaybook.yml
-$ ansible-playbook filebeat.yml
-$ ansible-playbook metricbeat.yml
-
+$ ansible-playbook myplaybook.yml<br />
+$ ansible-playbook filebeat.yml<br />
+$ ansible-playbook metricbeat.yml<br />
 
 To check the ELK server is running:
 http://[Host IP]/app/kibana#/home
