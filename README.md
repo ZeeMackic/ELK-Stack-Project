@@ -1,4 +1,4 @@
-# ELK-Stack-Project
+ELK-Stack-Project
 ## Automated ELK Stack Deployment
 
 The files in this repository were used to configure the network depicted below.
@@ -28,15 +28,15 @@ The main purpose of this network is to expose a load-balanced and monitored inst
 
 Load balancing ensures that the application will be highly available, in addition to restricting in-bound access to the network.
 
-What aspect of security do load balancers protect? 
--A load balancer effectively minimizes response time and enables a way to layer security without any changes to our applications. The layers of protection mean the load balancers can authenticate user access, protect against denial-of-service attacks, and protect the applications from emerging threats. Since the load balancer sits between the client device and the backend server, they are also vital in helping to ensure that no single server becomes unreliable due to being overworked.
+What aspect of security do load balancers protect?<br /> 
+- A load balancer effectively minimizes response time and enables a way to layer security without any changes to our applications. The layers of protection mean the load balancers can authenticate user access, protect against denial-of-service attacks, and protect the applications from emerging threats. Since the load balancer sits between the client device and the backend server, they are also vital in helping to ensure that no single server becomes unreliable due to being overworked.
 
 What is the advantage of a jump box?
--
+- The jump box is a server that is accessible from the internet and provides us with a way to access other  machines on a private network via an SSH protocol. It is used to access and also manage devices that are in separate security zones. 
 
 Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the jump box and system network.
-- What does Filebeat watch for? Filebeat is a logging agent, it monitors the log files on our servers, looking for any changes in files, collects log events and inputs them into ELK Stack for analysis.
-- What does Metricbeat record? Metricbeat helps keep us informed by collecting metrics and information on the services we run on a server and those of the operating system. It then takes the information collected and puts them into a server-side data processing pipeline such as Elasticsearch or Logstash.
+- What does Filebeat watch for?<br />Filebeat is a logging agent, it monitors the log files on our servers, looking for any changes in files, collects log events and inputs them into ELK Stack for analysis.
+- What does Metricbeat record?<br />Metricbeat helps keep us informed by collecting metrics and information on the services we run on a server and those of the operating system. It then takes the information collected and puts them into a server-side data processing pipeline such as Elasticsearch or Logstash.
 
 The configuration details of each machine may be found below.
 
@@ -113,8 +113,9 @@ In order to use the playbook, you will need to have an Ansible control node alre
 
 SSH into the control node and follow the steps below:
 - Copy the playbook file to Ansible control or create a nano file with the yml playbook. This is located in the /etc/ansible directory and should also contain the playbooks for Filebeat and Metricbeat.
-- Update the host file to include elk and webserver. The go back and edit the "hosts" file to ensure that the Ansible playbook is running on the specific machine by adding the VM IPs in order to specify which machine to install the ELK and the Filebeat on. 
-The ELK is to be installed on the ELK VM and the Filebeat on the [webservers] machines (Web1 & Web2).
+- Update the host file to include elk and webserver. 
+- Go back and edit the "hosts" file to ensure that the Ansible playbook is running on the specific machine by adding the IPs of the virtual machines in order to specify which machine to install the ELK and the Filebeat on. 
+- The ELK is to be installed on the ELK VM and the Filebeat on the [webservers] machines (Web1 & Web2).
 
 $ cd /etc/ansible
 $ cat hosts 
