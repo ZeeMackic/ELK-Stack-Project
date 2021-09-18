@@ -9,9 +9,9 @@ These files have been tested and used to generate a live ELK deployment on Azure
 
 Intall Files:
 - ![Ansible Playbook](Ansible/myplaybook.yml)
-- ![Elk Install] (Ansible/install_elk.yml)
+- ![Elk Install](Ansible/install_elk.yml)
 - ![Metricbeat.yml](Ansible/metricbeat.yml)
-- ![Filebeat.yml] (Ansible/filebeat.yml)
+- ![Filebeat.yml](Ansible/filebeat.yml)
 
 This document contains the following details:
 - Description of the Topology
