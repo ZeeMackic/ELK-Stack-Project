@@ -8,7 +8,10 @@ The files in this repository were used to configure the network depicted below.
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the YAML file may be used to install only certain pieces of it, such as Filebeat.
 
 Intall Files
-- (Ansible)
+![Ansible Playbook](Ansible/myplaybook.yml)
+![Elk Install] (Ansible/install_elk.yml)
+![Metricbeat.yml](Ansible/metricbeat.yml)
+![Filebeat.yml] (Ansible/filebeat.yml)
 
 This document contains the following details:
 - Description of the Topology
@@ -83,7 +86,7 @@ The playbook implements the following tasks:
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 
 Docker ps output
-! [Docker Output] (/Users/zeemackic/Documents/GitHub/ELK-Stack-Project/README /Images/Screen Shot 2021-09-07 at 8.39.44 PM.png)
+![Docker Output](/Users/zeemackic/Documents/GitHub/ELK-Stack-Project/README /Images/Screen Shot 2021-09-07 at 8.39.44 PM.png)
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
@@ -100,11 +103,11 @@ We have installed the following Beats on these machines:
 These Beats allow us to collect the following information from each machine:
 - Filebeat: Allows us to observe and simplify the way we collect and visualize logs.
 
-! [Filebeat] (/Users/zeemackic/Documents/GitHub/ELK-Stack-Project/README /Images/Screen Shot 2021-09-17 at 11.17.14 AM.png)
+![Filebeat](/Users/zeemackic/Documents/GitHub/ELK-Stack-Project/README /Images/Screen Shot 2021-09-17 at 11.17.14 AM.png)
 
 - Metricbeat: Collects the metrics of the operating system and the running services.
 
-! [Metricbeat] (/Users/zeemackic/Documents/GitHub/ELK-Stack-Project/README /Images/Screen Shot 2021-09-10 at 10.38.45 PM.png)
+![Metricbeat](/Users/zeemackic/Documents/GitHub/ELK-Stack-Project/README /Images/Screen Shot 2021-09-10 at 10.38.45 PM.png)
 
 ### Using the Playbook
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
@@ -135,16 +138,9 @@ $ cd /etc/ansible
 
 Run the playbooks with the following commands:
 
-$ ansible-playbook myplaybook.ym
-! [Ansible Playbook] (Ansible/myplaybook.yml)
-
+$ ansible-playbook myplaybook.yml
 $ ansible-playbook filebeat.yml
-
-! [Filebeat.yml] (Ansible/filebeat.yml)
-
 $ ansible-playbook metricbeat.yml
-
-! [Metricbeat.yml] (Ansible/metricbeat.yml)
 
 
 To check the ELK server is running:
