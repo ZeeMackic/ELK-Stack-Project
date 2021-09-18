@@ -3,7 +3,7 @@
 
 The files in this repository were used to configure the network depicted below.
 
-![Diagram](Images/ZM-AzureNetwork_00.png)
+![Diagram](Diagrams/NetworkDiagram.png)
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the YAML file may be used to install only certain pieces of it, such as Filebeat.
 
@@ -87,7 +87,7 @@ The following screenshot displays the result of running `docker ps` after succes
 
 Docker ps output
 
-- ![Docker Output](/Users/zeemackic/Documents/GitHub/ELK-Stack-Project/README /Images/Screen Shot 2021-09-07 at 8.39.44 PM.png)
+- ![Docker Output](Images/Container.png)
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
@@ -103,12 +103,10 @@ We have installed the following Beats on these machines:
 
 These Beats allow us to collect the following information from each machine:
 - Filebeat: Allows us to observe and simplify the way we collect and visualize logs.
-
-- ![Filebeat](/Users/zeemackic/Documents/GitHub/ELK-Stack-Project/README /Images/Screen Shot 2021-09-17 at 11.17.14 AM.png)
+![Filebeat](Images/Filebeat.png)
 
 - Metricbeat: Collects the metrics of the operating system and the running services.
-
-- ![Metricbeat](/Users/zeemackic/Documents/GitHub/ELK-Stack-Project/README /Images/Screen Shot 2021-09-10 at 10.38.45 PM.png)
+![Metricbeat](Images/Metricbeat.png)
 
 ### Using the Playbook
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
@@ -119,7 +117,7 @@ SSH into the control node and follow the steps below:
 The ELK is to be installed on the ELK VM and the Filebeat on the [webservers] machines (Web1 & Web2).
 
 $ cd /etc/ansible
-$ cat > hosts 
+$ cat hosts 
 [webservers]
 10.0.0.5
 10.0.0.6
