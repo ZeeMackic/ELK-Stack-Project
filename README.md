@@ -61,7 +61,7 @@ Machines allowed to access the ELK Server is the home machine, IP 70.181.XXX.XXX
 A summary of the access policies in place can be found in the table below.
 | Name       | Publicly Accessible | Allowed IP Addresses |
 |------------|---------------------|----------------------|
-| Jump Box   | Yes                 | 70.181.103.107       |
+| Jump Box   | Yes                 | 70.181.XXX.XXX       |
 | Web-1      | No                  | 10.0.0.4             |
 | Web-2      | No                  | 10.0.0.4             |
 | ELK-Server | No                  | 10.0.0.4             |
@@ -99,7 +99,6 @@ Install Metricbeat Playbook<br />
 - Setup Metricbeat
 - Start and enable Metricbeat service
 
-
 - The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 Docker ps output
 
@@ -129,7 +128,7 @@ These Beats allow us to collect the following information from each machine:
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
 
 SSH into the control node and follow the steps below:
-- Copy the three playbook files (install-elk.yml, filebeat.yml, and metricbeat.yml) to the /etc/ansible/roles directory on your control node. If you do not have them in the folder use nano to create the YAML files.
+- Copy the three playbook files or use nano to create the (install_elk.yml, filebeat.yml, and metricbeat.yml) to the /etc/ansible/roles directory on your control node. 
 - Update the /etc/ansible/hosts file. You will need to include a group called elkservers which contains the IP address of the server you wish to install the ELK stack on.
 - Create a group called webservers with the IP addresses of the target machines you wish to monitor.
 - The [webservers] group should have your Web 1 and Web 2 machines on it, while [elk] should have the ELK vm.
@@ -145,26 +144,22 @@ cat hosts <br />
 [elk]<br />
 10.1.0.4 ansible_python_interpreter=/usr/bin/python3<br />
 
-- Run the playbook, and navigate to Kibana ((http://[HOST IP]/app/kibana#/home) to verify the installation was successful.
+- Run the playbook, and navigate to Kibana ((http://[ELK VM PUBLIC IP:5601]/app/kibana#/home) to verify the installation was successful.
 
 
 To run the above playbooks, do the following:
-
-# Ensure the destination directories exist
-$ mkdir -p /etc/ansible/roles/files
-
-# Update the /etc/ansible/hosts file with appropriate configuration
-$ cat /etc/ansible/hosts
-
-# Run the ELK installation playbook
-$ ansible-playbook /etc/ansible/install_elk.yml
-
-# Run the Filebeat installation playbook
-$ ansible-playbook /etc/ansible/filebeat.yml
-
-# Run the Metricbeat installation playbook
-$ ansible-playbook /etc/ansible/metricbeat.yml
-
+\\\
+# Ensure the destination directories exist<br />
+$ mkdir -p /etc/ansible/roles/files<br />
+# Update the /etc/ansible/hosts file with appropriate configuration<br />
+$ cat /etc/ansible/hosts<br />
+# Run the ELK installation playbook<br />
+$ ansible-playbook /etc/ansible/install_elk.yml<br />
+# Run the Filebeat installation playbook<br />
+$ ansible-playbook /etc/ansible/filebeat.yml<br />
+# Run the Metricbeat installation playbook<br />
+$ ansible-playbook /etc/ansible/metricbeat.yml<br />
+\\\
 
 To check the ELK server is running:
 http://[Host IP]/app/kibana#/home
