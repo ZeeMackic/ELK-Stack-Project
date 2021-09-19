@@ -112,20 +112,19 @@ These Beats allow us to collect the following information from each machine:
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
 
 SSH into the control node and follow the steps below:
-- Copy the playbook file to Ansible control or create a nano file with the yml playbook. This is located in the /etc/ansible directory and should also contain the playbooks for Filebeat and Metricbeat.
-- Update the host file to include elk and webserver. 
+- Copy the playbook file to Ansible control or create a nano file with the playbook that installs Docker and configures the container.
 - Go back and edit the "hosts" file to ensure that the Ansible playbook is running on the specific machine by adding the IPs of the virtual machines in order to specify which machine to install the ELK and the Filebeat on. 
-- The ELK is to be installed on the ELK VM and the Filebeat on the [webservers] machines (Web1 & Web2).
+- The ELK is to be installed on the ELK VM and the Filebeat on the [webservers] machines (Web1 & Web2)
 
-$ cd /etc/ansible
-$ cat hosts 
-[webservers]
-10.0.0.5
-10.0.0.6
+cd /etc/ansible<br />
+cat hosts <br />
+[webservers]<br />
+10.0.0.4 ansible_python_interpreter=/usr/bin/python3<br />
+10.0.0.5 ansible_python_interpreter=/usr/bin/python3<br />
+10.0.0.6 ansible_python_interpreter=/usr/bin/python3<br />
 
-[elk]
-10.1.0.4
-
+[elk]<br />
+10.1.0.4 ansible_python_interpreter=/usr/bin/python3<br />
 
 - Run the playbook, and navigate to Kibana ((http://[Host IP]/app/kibana#/home) to verify the installation was successful.
 
@@ -134,13 +133,13 @@ To run the above playbooks, do the following:
 
 Navigate to the directory the playbooks are located by running: 
 
-$ cd /etc/ansible
+cd /etc/ansible
 
 Run the playbooks with the following commands:
 
-$ ansible-playbook myplaybook.yml<br />
-$ ansible-playbook filebeat.yml<br />
-$ ansible-playbook metricbeat.yml<br />
+ansible-playbook myplaybook.yml<br />
+ansible-playbook filebeat.yml<br />
+ansible-playbook metricbeat.yml<br />
 
 To check the ELK server is running:
 http://[Host IP]/app/kibana#/home
