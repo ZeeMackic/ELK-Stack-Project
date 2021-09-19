@@ -148,18 +148,22 @@ cat hosts <br />
 
 
 To run the above playbooks, do the following:
-\\\
-# Ensure the destination directories exist<br />
+
+- Ensure the destination directories exist<br />
 $ mkdir -p /etc/ansible/roles/files<br />
-# Update the /etc/ansible/hosts file with appropriate configuration<br />
+
+- Update the /etc/ansible/hosts file with appropriate configuration<br />
 $ cat /etc/ansible/hosts<br />
-# Run the ELK installation playbook<br />
+
+- Run the ELK installation playbook<br />
 $ ansible-playbook /etc/ansible/install_elk.yml<br />
-# Run the Filebeat installation playbook<br />
+
+- Run the Filebeat installation playbook<br />
 $ ansible-playbook /etc/ansible/filebeat.yml<br />
-# Run the Metricbeat installation playbook<br />
+
+- Run the Metricbeat installation playbook<br />
 $ ansible-playbook /etc/ansible/metricbeat.yml<br />
-\\\
+
 
 To check the ELK server is running:
 http://[Host IP]/app/kibana#/home
