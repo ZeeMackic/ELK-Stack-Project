@@ -52,11 +52,11 @@ The configuration details of each machine may be found below.
 The machines on the internal network are not exposed to the public Internet. 
 
 Only the jump box machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
-- My personal machine, IP: 70.181.103.107
+- My personal machine, IP: 70.181.XXX.XXX
 
-Machines within the network can only be accessed by the jump box provisioner.
+Machines within the network can only be accessed by the Jump Box, which has the IP address: 10.1.0.4.
 
-Machines allowed to access the ELK Server is the home machine, IP 70.181.103.107, via port 5601
+Machines allowed to access the ELK Server is the home machine, IP 70.181.XXX.XXX, via port 5601.
 
 A summary of the access policies in place can be found in the table below.
 | Name       | Publicly Accessible | Allowed IP Addresses |
@@ -76,15 +76,31 @@ Ansible was used to automate configuration of the ELK machine. No configuration 
 - Tasks are executed in order.
 - It is a free, open-source tool, which does not require budget allocations.
 
-The playbook implements the following tasks:
-- Install docker.io
-- Install pip3
-- Install Docker python module
-- Increase virtual memory
-- Download and launch a docker
+A total of three playbooks were installed, each implemented:
 
-The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
+Install ELK Playbook<br />
+- Install docker.io package using apt
+- Install python3-pip package manager using apt
+- Install the docker module using pip
+- Configure the VM to use more memory using the sysctl module
+- Download and launch the docker container for the ELK stack
 
+Install Filebeat Playbook<br />
+- Download and install Filebeat
+- Copy Filebeat configuration
+- Enable Filebeat system module
+- Setup Filebeat
+- Start and enable Filebeat service
+
+Install Metricbeat Playbook<br />
+- Download and install Metricbeat
+- Copy Metricbeat configuration
+- Enable Metricbeat docker module
+- Setup Metricbeat
+- Start and enable Metricbeat service
+
+
+- The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 Docker ps output
 
 - ![Docker Output](Images/Container.png)
@@ -99,23 +115,26 @@ This ELK server is configured to monitor the following machines:
 
 
 We have installed the following Beats on these machines:
-- Microbeats
+- Filebeat
+- Metricbeat
 
 These Beats allow us to collect the following information from each machine:
-- Filebeat: Allows us to observe and simplify the way we collect and visualize logs.
+- Filebeat: Allows us to observe and simplify the way we collect and visualize logs such as: login attempts, failed processes, and other errors.
 ![Filebeat](Images/Filebeat.png)
 
-- Metricbeat: Collects the metrics of the operating system and the running services.
+- Metricbeat: Collects the metrics of the operating system and the running services. We are able to view information on such things as CPU usage and load.
 ![Metricbeat](Images/Metricbeat.png)
 
 ### Using the Playbook
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
 
 SSH into the control node and follow the steps below:
-- Copy the playbook file to Ansible control or create a nano file with the playbook that installs Docker and configures the container.
-- Go back and edit the "hosts" file to ensure that the Ansible playbook is running on the specific machine by adding the IPs of the virtual machines in order to specify which machine to install the ELK and the Filebeat on. 
-- The ELK is to be installed on the ELK VM and the Filebeat on the [webservers] machines (Web1 & Web2)
+- Copy the three playbook files (install-elk.yml, filebeat.yml, and metricbeat.yml) to the /etc/ansible/roles directory on your control node. If you do not have them in the folder use nano to create the YAML files.
+- Update the /etc/ansible/hosts file. You will need to include a group called elkservers which contains the IP address of the server you wish to install the ELK stack on.
+- Create a group called webservers with the IP addresses of the target machines you wish to monitor.
+- The [webservers] group should have your Web 1 and Web 2 machines on it, while [elk] should have the ELK vm.
 
+Here is a sample hosts file configuration of the Ansible inventory:
 cd /etc/ansible<br />
 cat hosts <br />
 [webservers]<br />
@@ -126,20 +145,26 @@ cat hosts <br />
 [elk]<br />
 10.1.0.4 ansible_python_interpreter=/usr/bin/python3<br />
 
-- Run the playbook, and navigate to Kibana ((http://[Host IP]/app/kibana#/home) to verify the installation was successful.
+- Run the playbook, and navigate to Kibana ((http://[HOST IP]/app/kibana#/home) to verify the installation was successful.
 
 
 To run the above playbooks, do the following:
 
-Navigate to the directory the playbooks are located by running: 
+# Ensure the destination directories exist
+$ mkdir -p /etc/ansible/roles/files
 
-cd /etc/ansible
+# Update the /etc/ansible/hosts file with appropriate configuration
+$ cat /etc/ansible/hosts
 
-Run the playbooks with the following commands:
+# Run the ELK installation playbook
+$ ansible-playbook /etc/ansible/install_elk.yml
 
-ansible-playbook myplaybook.yml<br />
-ansible-playbook filebeat.yml<br />
-ansible-playbook metricbeat.yml<br />
+# Run the Filebeat installation playbook
+$ ansible-playbook /etc/ansible/filebeat.yml
+
+# Run the Metricbeat installation playbook
+$ ansible-playbook /etc/ansible/metricbeat.yml
+
 
 To check the ELK server is running:
 http://[Host IP]/app/kibana#/home
