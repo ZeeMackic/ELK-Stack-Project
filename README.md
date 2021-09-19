@@ -133,6 +133,9 @@ SSH into the control node and follow the steps below:
 - Create a group called webservers with the IP addresses of the target machines you wish to monitor.
 - The [webservers] group should have your Web 1 and Web 2 machines on it, while [elk] should have the ELK vm.
 
+This is the Ansible playbook file<br />
+[Ansible Playbook](Ansible/myplaybook.yml)<br />
+
 Here is a sample hosts file configuration of the Ansible inventory:
 cd /etc/ansible<br />
 cat hosts <br />
